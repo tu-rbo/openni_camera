@@ -218,12 +218,11 @@ void DriverNodelet::setupDevice ()
   OpenNIDriver& driver = OpenNIDriver::getInstance ();
 
   do {
-    driver.updateDeviceList ();
-
     if (driver.getNumberDevices () == 0)
     {
       NODELET_INFO ("No devices connected.... waiting for devices to be connected");
       boost::this_thread::sleep(boost::posix_time::seconds(3));
+      driver.updateDeviceList ();
       continue;
     }
 
